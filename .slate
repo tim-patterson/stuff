@@ -1,0 +1,17 @@
+alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
+alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
+alias resizetophalf move windowTopLeftX;screenOriginY windowSizeX;screenSizeY/2
+alias resizetoptwothird move windowTopLeftX;screenOriginY windowSizeX;screenSizeY*2/3
+alias resizebottomhalf move windowTopLeftX;screenOriginY+screenSizeY/2 windowSizeX;screenSizeY/2
+alias resizebottomthird move windowTopLeftX;screenOriginY+screenSizeY*2/3 windowSizeX;screenSizeY/3
+
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+
+alias leftscreenrighthalf  ${righthalf} previous
+alias rightscreenlefthalf ${lefthalf} next
+
+bind left:cmd chain ${lefthalf} | ${leftscreenrighthalf}
+bind right:cmd chain ${righthalf} | ${rightscreenlefthalf}
+bind up:cmd ${full}
+bind up:shift;cmd chain ${resizetophalf} | ${resizetoptwothird}
+bind down:shift;cmd chain ${resizebottomhalf} | ${resizebottomthird}
